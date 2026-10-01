@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Khớp theo URL yêu cầu gốc (/admin/books), KHÔNG phải đường dẫn JSP bên trong WEB-INF.
+     Decorator đầu tiên khớp thì thắng => admin phải đứng trước /* -->
+<decorators defaultdir="/WEB-INF/decorators">
+  <excludes>
+    <pattern>/assets/*</pattern>
+  </excludes>
+  <decorator name="admin" page="admin.jsp">
+    <pattern>/admin/*</pattern>
+  </decorator>
+  <decorator name="user" page="user.jsp">
+    <pattern>/*</pattern>
+  </decorator>
+</decorators>

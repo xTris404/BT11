@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+         version="4.0">
+  <display-name>BookStore</display-name>
+
+  <!-- Footer (Câu 1): sửa 3 giá trị này -->
+  <context-param><param-name>studentName</param-name><param-value>Nguyễn Xuân Trí</param-value></context-param>
+  <context-param><param-name>studentId</param-name><param-value>24162132</param-value></context-param>
+  <context-param><param-name>examCode</param-name><param-value>02</param-value></context-param>
+
+  <!-- THỨ TỰ KHAI BÁO = THỨ TỰ CHẠY: Encoding -> Admin guard -> User guard -> SiteMesh (trong cùng, bao quanh JSP) -->
+  <filter><filter-name>encoding</filter-name><filter-class>com.bookstore.filter.EncodingFilter_24162132</filter-class></filter>
+  <filter-mapping><filter-name>encoding</filter-name><url-pattern>/*</url-pattern></filter-mapping>
+
+  <filter><filter-name>adminGuard</filter-name><filter-class>com.bookstore.filter.AdminFilter_24162132</filter-class></filter>
+  <filter-mapping><filter-name>adminGuard</filter-name><url-pattern>/admin/*</url-pattern></filter-mapping>
+
+  <filter><filter-name>userGuard</filter-name><filter-class>com.bookstore.filter.UserFilter_24162132</filter-class></filter>
+  <filter-mapping>
+    <filter-name>userGuard</filter-name>
+    <url-pattern>/cart</url-pattern><url-pattern>/checkout</url-pattern><url-pattern>/order</url-pattern>
+  </filter-mapping>
+
+  <filter><filter-name>sitemesh</filter-name><filter-class>com.opensymphony.sitemesh.webapp.SiteMeshFilter</filter-class></filter>
+  <filter-mapping><filter-name>sitemesh</filter-name><url-pattern>/*</url-pattern></filter-mapping>
+
+  <session-config>
+    <session-timeout>30</session-timeout>
+    <cookie-config><http-only>true</http-only></cookie-config>
+  </session-config>
+
+  <welcome-file-list><welcome-file>index.jsp</welcome-file></welcome-file-list>
+</web-app>
